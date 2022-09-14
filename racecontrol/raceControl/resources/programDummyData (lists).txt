@@ -1,0 +1,77 @@
+		// --------------
+		// CREACIÓN DE COCHES
+		// --------------
+		Car specter = new Car("RTX 2060", "ford", "nvidia");
+		Car quicksilver = new Car("RTX 2070", "ford", "nvidia");
+		Car hydra = new Car("RTX 2080", "chevrolet", "nvidia");
+		Car empire = new Car("GTX 3080ti", "ford", "nvidia");
+		
+		List<Car> nvidiaCars = new ArrayList<>();
+		nvidiaCars.add(specter); nvidiaCars.add(quicksilver); nvidiaCars.add(hydra); nvidiaCars.add(empire);
+		
+		Car spirit = new Car("RX 6800", "toyota", "amd");
+		Car albatros = new Car("5600X", "chevrolet", "amd");
+		Car cosmos = new Car("5600G", "toyota", "amd");
+		
+		List<Car> amdCars = new ArrayList<>();
+		amdCars.add(spirit); amdCars.add(albatros); amdCars.add(cosmos);
+		
+		Car basilisk = new Car("i5-8600", "chevrolet", "intel");
+		Car prophecy = new Car("i5-12400F", "ford", "intel");
+		Car voyage = new Car("i7-12700F", "toyota", "intel");
+		Car turbokiller9000 = new Car("i9-14600F", "ford", "intel");
+		
+		List<Car> intelCars = new ArrayList<>();
+		intelCars.add(basilisk); intelCars.add(prophecy); intelCars.add(voyage); intelCars.add(turbokiller9000);
+		
+		Car olympian = new Car("F15", "toyota", "asus");
+		Car titan = new Car("G15", "ford", "asus");
+		Car apex = new Car("Strix G15", "toyota", "asus");
+		Car bolt = new Car("Dash F15", "toyota", "asus");
+		
+		List<Car> asusCars = new ArrayList<>();
+		asusCars.add(olympian); asusCars.add(titan); asusCars.add(apex); asusCars.add(bolt);
+		
+		// --------------
+		// CREACIÓN DE GARAJES
+		// --------------
+		Garage nvidia = new Garage("nvidia", nvidiaCars);
+		Garage amd = new Garage("amd", amdCars);
+		Garage intel = new Garage("intel", intelCars);
+		Garage asus = new Garage("asus", asusCars);
+		
+		// Tesla??
+		
+		// Creación de listas de garajes a participar en carreras y torneos
+		List<Garage> registeredGaragesSet1 = new ArrayList<>();
+		registeredGaragesSet1.add(nvidia); registeredGaragesSet1.add(amd);
+		List<Garage> registeredGaragesSet2 = new ArrayList<>();
+		registeredGaragesSet2.add(nvidia); registeredGaragesSet2.add(amd); registeredGaragesSet2.add(intel);
+		List<Garage> registeredGaragesSet3 = new ArrayList<>();
+		registeredGaragesSet3.add(nvidia); registeredGaragesSet3.add(amd); registeredGaragesSet3.add(intel); registeredGaragesSet3.add(asus);
+		
+		
+		// --------------
+		// CREACIÓN DE CARRERAS
+		// --------------
+
+		Race brokenPier = new StandardRace("broken pier", registeredGaragesSet3, 60);
+		Race moonview = new StandardRace("moonview highway", registeredGaragesSet3, 80);
+		Race bone = new StandardRace("dry dunes", registeredGaragesSet3, 55);
+		Race rainbow = new StandardRace("rainbow road", registeredGaragesSet3, 80);
+		
+		Race ghost = new EliminationRace("ghost valley", registeredGaragesSet2, 10);
+		Race royal = new StandardRace("royal raceway", registeredGaragesSet1, 70);
+		Race maple = new EliminationRace("maple treeway", registeredGaragesSet2, 15);
+		
+		
+		// --------------
+		// CREACIÓN DE TORNEOS
+		// --------------
+		
+		List<Race> leafCupRaces = new ArrayList<>();
+		leafCupRaces.add(maple); leafCupRaces.add(moonview); leafCupRaces.add(bone);
+		
+		Tournament leafCup = new Tournament("leafCup", leafCupRaces, registeredGaragesSet3);
+		// el garagesset va a tener que hacerse luego en función de los que corran en las carreras, o viceversa. aka un array de sets de garajes
+		
