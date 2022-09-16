@@ -7,9 +7,11 @@ public class Car {
 	protected String garage = "";
 	
 	protected int currentSpeed = 0;
-	protected int maxSpeed = 200;
+	private static final int MAXSPEED = 200;
+	protected int accelerationFactor = 10;
+	protected int traveledDistance = 0;
 	
-	protected int points = 0;
+	protected int score = 0;
 	
 	// El coche no gira el volante.
 	//os coches frenan y aceleran de forma aleatoria. La velocidad del coche siempre aumenta o disminuye un número fijo estipulado, por ejemplo 10 km/h.
@@ -63,27 +65,57 @@ public class Car {
 	}
 
 	public int getMaxSpeed() {
-		return maxSpeed;
+		return MAXSPEED;
+	}
+	
+	public int getTraveledDistance() {
+		return traveledDistance;
 	}
 
-	public void setMaxSpeed(int maxSpeed) {
-		this.maxSpeed = maxSpeed;
+
+	public void setTraveledDistance(int traveledDistance) {
+		this.traveledDistance = traveledDistance;
+	}
+	
+	public void addTraveledDistance(int currentSpeed) {
+		this.traveledDistance = traveledDistance + currentSpeed;
+	}
+
+
+	public int getScore() {
+		return score;
+	}
+
+
+	public void setScore(int score) {
+		this.score += score;
 	}
 
 	
 	// --------------
 	// MÉTODOS
 	// --------------
-	
+
 	public void accelerate() {
-		if (currentSpeed < maxSpeed) {
-			currentSpeed += 10;
+		if (currentSpeed < MAXSPEED) {
+			currentSpeed += accelerationFactor;
+		} else {
+			currentSpeed = MAXSPEED;
 		}
 	}
 	
 	public void deccelerate() {
 		if (currentSpeed > 0) {
-			currentSpeed -= 10;
+			currentSpeed -= accelerationFactor;
+		}
+	}
+	
+	public void randomizeAcceleration() {
+		double random = Math.random();
+		if (random <= 0.5) {
+			deccelerate();
+		} else {
+			accelerate();
 		}
 	}
 	

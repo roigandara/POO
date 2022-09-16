@@ -1,21 +1,24 @@
 package raceControl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import es.imatia.redsocial.ImagePost;
+import es.imatia.redsocial.Input;
+import es.imatia.redsocial.Post;
+import es.imatia.redsocial.TextPost;
 import es.imatia.redsocial.User;
 import es.imatia.redsocial.UserList;
+import es.imatia.redsocial.VideoPost;
 
 public class Main {
 	
 	public static void main(String[] args) {
-		// Puntuaciones: Serán la suma de los puntos de las carreras ganadas de cada coche. 
-		
-		// guardar Coches, Garajes, Carreras y Torneos en un fichero.
-		// Este fichero debe cargarse cada vez que se inicia el programa y debe actualizarse antes de finalizar el programa.
-
 		// --------------
 		// CREACIÓN DE COCHES
 		// --------------
@@ -64,10 +67,12 @@ public class Main {
 		
 		// Tesla??
 		
-		// Creación de listas de garajes a participar en carreras y torneos
-		List<Garage> garageList = new ArrayList<>();
-		
+		// Creación de listas de TODOS los garajes existentes
+		Set<Garage> garageList = new HashSet<>();
 		garageList.add(nvidia); garageList.add(amd); garageList.add(intel);
+		
+		// Creación de garajes selectos para participar en torneos
+		Set<Garage> participatingGarages = new HashSet<>();
 		
 		List<Garage> registeredGaragesSet0 = new ArrayList<>();
 		registeredGaragesSet0.add(nvidia);
@@ -75,8 +80,6 @@ public class Main {
 		registeredGaragesSet1.add(nvidia); registeredGaragesSet1.add(amd);
 		List<Garage> registeredGaragesSet2 = new ArrayList<>();
 		registeredGaragesSet2.add(nvidia); registeredGaragesSet2.add(amd); registeredGaragesSet2.add(intel);
-		// List<Garage> registeredGaragesSet3 = new ArrayList<>();
-		// registeredGaragesSet3.add(nvidia); registeredGaragesSet3.add(amd); registeredGaragesSet3.add(intel); registeredGaragesSet3.add(asus);
 		
 		
 		// --------------
@@ -84,31 +87,76 @@ public class Main {
 		// --------------
 		// https://mario.fandom.com/wiki/List_of_tracks_in_the_Mario_Kart_series
 		
-		Race brokenPier = new StandardRace("broken pier", registeredGaragesSet2, 60);
-		Race moonview = new StandardRace("moonview highway", registeredGaragesSet2, 80);
-		Race bone = new StandardRace("dry dunes", registeredGaragesSet0, 55);
-		Race rainbow = new StandardRace("rainbow road", registeredGaragesSet2, 80);
+		Race ghost = new EliminationRace("ghost valley", participatingGarages, 10, 60);
+		Race royal = new StandardRace("royal raceway", participatingGarages, 70, 40);
+		Race maple = new EliminationRace("maple treeway", participatingGarages, 15, 70);
 		
-		Race ghost = new EliminationRace("ghost valley", registeredGaragesSet1, 10);
-		Race royal = new StandardRace("royal raceway", registeredGaragesSet1, 70);
-		Race maple = new EliminationRace("maple treeway", registeredGaragesSet2, 15);
-		
+		Race brokenPier = new StandardRace("broken pier", participatingGarages, 70, 40);
+		Race moonview = new StandardRace("moonview highway", participatingGarages, 60, 50);
+		Race bone = new StandardRace("dry dunes", participatingGarages, 50, 40);
+		Race rainbow = new StandardRace("rainbow road", participatingGarages, 70, 70);
 		
 		// LISTA DE TODAS LAS CARRERAS
 		List<Race> raceList = new ArrayList<>();
 		Collections.addAll(raceList, brokenPier, moonview, bone, rainbow, ghost, royal, maple);
-		// CÓMO AÑADIR LOS X PRIMEROS???
+		
 		
 		// --------------
 		// CREACIÓN DE TORNEOS
 		// --------------
 		
 		List<Race> leafCupRaces = new ArrayList<>();
-		leafCupRaces.add(maple); leafCupRaces.add(moonview); leafCupRaces.add(bone);
+		Collections.addAll(leafCupRaces, ghost, royal, maple);
+		Tournament leafCup = new Tournament("leafCup", leafCupRaces, participatingGarages);
 		
-		Tournament leafCup = new Tournament("leafCup", leafCupRaces, registeredGaragesSet2);
-		// el garagesset va a tener que hacerse luego en función de los que corran en las carreras, o viceversa. aka un array de sets de garajes
+		// -------------
+		// MENÚ
+		// --------------
 		
+		String option = "";
+		
+		// do while
+		do {
+			String input = "";
+			int inputNum;
+			System.out.println("--- MENU ---");
+			System.out.println("Opcións:");
+			System.out.println("1. Elexir garaxes a participar");
+			System.out.println("2. Comezar torneo");
+			System.out.println();
+			option = Input.string("Seleccion: ¿Que opción desexa facer?: ");
+			System.out.println();
+			switch (option) {
+				case "1":
+					do {
+						int i = 1;
+						List<Garage> list = new ArrayList<Garage>(garageList);
+					
+						for (Garage g : garageList) {
+							System.out.println(i + ". " + g.name);
+							i++;
+						}
+						System.out.println("0. Atrás");
+						System.out.println("selected g" + participatingGarages);
+						inputNum = Input.integer("Seleccion: ¿Que garaxe incluir?: ");
+						if (inputNum == 0)
+							break;
+						if(participatingGarages.add(list.get(inputNum-1)) == true) {
+							participatingGarages.add(list.get(inputNum-1));
+							System.out.println("Engadiuse " + list.get(inputNum-1));
+						} else {
+							System.out.println("O garaxe " + list.get(inputNum-1) + " xa estaba na lista.");
+						}
+					
+						} while (inputNum != 0);
+				break;
+				case "2": {					
+					
+					leafCup.startTournament();
+				}
+		} 
+		
+	} while (option != "end");
 		
 	}
 	
