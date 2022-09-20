@@ -1,0 +1,126 @@
+<?xml version ="1.0" encoding="UTF-8" standalone="no"?>
+
+<raceControl>
+	<garage name = "nvidia">
+		<car>
+			<model>kenpachi</model>
+			<brand>ford</brand>
+			<carGarage>nvidia</carGarage>
+		</car>
+		
+		<car>
+			<model>specter</model>
+			<brand>ford</brand>
+			<carGarage>nvidia</carGarage>
+		</car>
+
+		<car>
+			<model>hydra</model>
+			<brand>ford</brand>
+			<carGarage>nvidia</carGarage>
+		</car>
+
+		<car>
+			<model>empire</model>
+			<brand>toyota</brand>
+			<carGarage>nvidia</carGarage>
+		</car>
+	</garage>
+
+	<garage name = "amd">
+	<car>
+		<model>gonpachiro</model>
+		<brand>chevrolet</brand>
+		<carGarage>amd</carGarage>
+	</car>
+
+	<car>
+		<model>spirit</model>
+		<brand>chevrolet</brand>
+		<carGarage>amd</carGarage>
+	</car>
+	
+	<car>
+		<model>albatros</model>
+		<brand>ford</brand>
+		<carGarage>amd</carGarage>
+	</car>
+	
+	<car>
+		<model>cosmos</model>
+		<brand>toyota</brand>
+		<carGarage>amd</carGarage>
+	</car>
+</garage>
+
+
+<garage name = "intel">
+	<car>
+		<model>basilisk</model>
+		<brand>chevrolet</brand>
+		<carGarage>amd</carGarage>
+	</car>
+
+	<car>
+		<model>prophecy</model>
+		<brand>ford</brand>
+		<carGarage>amd</carGarage>
+	</car>
+	
+	<car>
+		<model>voyage</model>
+		<brand>ford</brand>
+		<carGarage>amd</carGarage>
+	</car>
+
+	<car>
+		<model>turbokiller9000</model>
+		<brand>ford</brand>
+		<carGarage>amd</carGarage>
+	</car>
+</garage>
+
+<tournament name = "maple leaf">
+	<race type="standard">
+		<name>ghost valley</name>
+		<points>10</points>
+		<time>60</time>
+	</race>
+	
+	<race type="standard">
+		<name>royal raceway</name>
+		<points>20</points>
+		<time>70</time>
+	</race>
+	
+	<race type="standard">
+		<name>maple treeway</name>
+		<points>10</points>
+		<time>60</time>
+	</race>
+	
+	<race type="elimination">
+		<name>broken pier</name>
+		<points>20</points>
+		<time>70</time>
+	</race>
+	
+	<race type="standard">
+		<name>moonview highway</name>
+		<points>10</points>
+		<time>60</time>
+	</race>
+	
+	<race type="standard">
+		<name>dry dunes</name>
+		<points>20</points>
+		<time>70</time>
+	</race>
+	
+	<race type="elimination">
+		<name>rainbow road</name>
+		<points>10</points>
+		<time>60</time>
+	</race>
+</tournament>
+</raceControl>

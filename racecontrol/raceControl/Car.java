@@ -9,7 +9,7 @@ public class Car {
 	protected int currentSpeed = 0;
 	private static final int MAXSPEED = 200;
 	protected int accelerationFactor = 10;
-	protected int traveledDistance = 0;
+	protected double traveledDistance = 0;
 	
 	protected int score = 0;
 	
@@ -68,17 +68,16 @@ public class Car {
 		return MAXSPEED;
 	}
 	
-	public int getTraveledDistance() {
-		return traveledDistance;
+	public double getTraveledDistance() {
+		return Utils.round(traveledDistance, 2);
 	}
 
-
-	public void setTraveledDistance(int traveledDistance) {
+	public void setTraveledDistance(double traveledDistance) {
 		this.traveledDistance = traveledDistance;
 	}
 	
 	public void addTraveledDistance(int currentSpeed) {
-		this.traveledDistance = traveledDistance + currentSpeed;
+		this.traveledDistance = traveledDistance + (currentSpeed * 0.01666);
 	}
 
 

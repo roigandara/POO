@@ -1,8 +1,8 @@
 package raceControl;
 
-import java.util.ArrayList;
+
 import java.util.HashMap;
-import java.util.List;
+
 
 public class Garage {
 	protected String name;
@@ -13,12 +13,17 @@ public class Garage {
 	// CONSTRUCTOR
 	// --------------
 	
+	public Garage(String name) {
+		this.name = name;
+	}
+	
 	public Garage(String name, HashMap<String, Car> registeredCars) {
 		super();
 		this.name = name;
 		this.registeredCars = registeredCars;
 	}
-		
+	
+
 	// --------------
 	// GETTER SETTERS
 	// --------------
@@ -33,6 +38,10 @@ public class Garage {
 	}
 	public void setRegisteredCars(HashMap<String, Car> registeredCars) {
 		this.registeredCars = registeredCars;
+	}
+	
+	public void addRegisteredCars(String name, Car car) {
+		this.registeredCars.put(name, car);
 	}
 	
 	

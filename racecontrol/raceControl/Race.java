@@ -2,10 +2,8 @@ package raceControl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.Set;
-import java.util.HashMap;
 import java.util.HashSet;
 
 public abstract class Race {
@@ -14,14 +12,7 @@ public abstract class Race {
 	protected String name;
 	protected int points;
 	
-	
-	// Standard or Elimination
-	// Carrera estandar: tienes por ejemplo 3h (eso lo determina cada uno). Al terminar las 3horas tienes que mirar la distancia de cada uno y el que más a recorrido es el que gana. La carrera termina con el mismo numero de corredores que al inicio.
-	// Carrera de Elminación: la carrera dura un tiempo determinado (3h por ejemplo tambien) y cada 20 mins por ejemplo (tambien determina tu el tiempo) se va eliminando el que menos ha recorrido por lo que al terminar la carrera habrá menos corredores que empezaron
-	// Eliminación (que tienen una serie de minutos previos para que los pilotos se hagan a la pista, y al terminar esos minutos de calentamiento, se irá retirando el coche que va en la última posición, cada minuto, hasta que sólo quede un coche).
-	
 	protected Set<Garage> raceGarageSet = new HashSet<Garage>(); // garajes que participan en la carrera
-	// ^ Si participa uno, todos sus coches entrarán en la competición. En el caso de ser más de uno, solo competirá un coche de cada Garaje, elegido de forma aleatoria.
 	protected List<Car> raceCars = new ArrayList<Car>();
 	
 	// protected HashMap<Garage,Car> raceCarSet = new HashMap<Garage,Car>();
@@ -33,16 +24,21 @@ public abstract class Race {
 
 	
 	// CONSTRUCTOR
-	public Race(String name, Set<Garage> participatingGarages, int points) {
+	public Race(String name, int points) {
 		super();
 		this.name = name;
-		this.raceGarageSet = participatingGarages;
 		this.points = points;
 	}
 	
 	// GETTERS SETTERS
 	
-	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 	// MÉTODOS
 	
@@ -53,11 +49,11 @@ public abstract class Race {
 			int randomIndex = new Random().nextInt(tournamentGarages.size());
 			Garage randomGarage = list.get(randomIndex);
 			raceGarageSet.add(randomGarage);
-			System.out.println("GARAJE SELECCIONADO DEL TORNEO: " + randomGarage);
 		}
 		
+		System.out.println("--- PARTICIPANTES DE CARRERA ---");
 		for (Garage g : raceGarageSet) {
-			System.out.println("Participante de carrera: " + g.getName());
+			System.out.println(g.getName());
 		}
 	}
 	
@@ -86,6 +82,8 @@ public abstract class Race {
 	}
 	*/
 	
+
+
 	// CON LISTA PARA LOS COCHES: RACECARS
 	// -------------------------------------
 	public void generateRacingCars(List<Car> tournamentRepCars) { // crea una lista de coches a participar
@@ -108,6 +106,7 @@ public abstract class Race {
 	public abstract void startRace();
 	public abstract void calculatePodium();
 	public abstract void giveOutScores();
+
 	
 	
 }
